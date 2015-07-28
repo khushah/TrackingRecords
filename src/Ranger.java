@@ -8,6 +8,7 @@ public class Ranger {
 	public static void main (String args[]){
 		addFirstTrackingRecord(1,100000,"a1");
 		addStartingTrackingRecord(12000,13000,"b1");
+		//addStartingTrackingRecord(11000,11500,"c1");
 		System.out.println(ll);
 		System.out.println(hm);
 		
@@ -27,39 +28,49 @@ public static void addStartingTrackingRecord(int start,int end,String statuscode
 		int toAddIndex1=0;
 		int toAddIndex2=0;
 		List<Integer> toDeletList =new ArrayList<Integer>();
-	for(int i=0;i<ll.size();++i){
-		
+		int length=ll.size();
+		System.out.println("size="+length);
+		String prev="";
+	for(int i=0;i<length;++i){
+		System.out.println("im in for");
+	prev=hm.get(ll.get(i));
+	System.out.println("testing"+ll.get(i)+" -- "+start);
 		if(ll.get(i)>start){
 			if(toAddIndex1==0)
-			{toAddIndex1=i;
+			{
+				ll=addToList(ll,i,start);
+				hm.put(ll.get(i), statuscode);
+				toAddIndex1++;
 			//System.out.println(toAddIndex);
 			}
 			
 		}
 		if(ll.get(i)<=end){
-			toDeletList.add(i);
+			if(toAddIndex1!=0)
+			{
+				hm.put(ll.get(i), "-2");
 			
+			}
 			
 		}else{
-			toAddIndex2=i;
+			
+			ll=addToList(ll,i,end);
+			
 		}
 		
+		//length=ll.size();
+	}
+
 		
 	}
-	ll.add(toAddIndex1,start);
-	ll.add(toAddIndex2,end);
-	hm.put(start, statuscode);
-	hm.put(end, "-1");
-	Collections.sort(toDeletList);
-	
-	for(int i=toDeletList.size()-1;i>=0;--i){
-		hm.remove(toDeletList.get(i));
-		ll.remove(toDeletList.remove(i));
-		
-	}
-	
-		
-	}
+
+private static LinkedList<Integer> addToList(LinkedList<Integer> ll2, int i,
+		int start) {
+	System.out.println("to add at"+i+"value="+start);
+	LinkedList<Integer> ll=new LinkedList<Integer>(ll2);
+	ll.add(i, start);
+	return ll;
+}
 
 
 }
