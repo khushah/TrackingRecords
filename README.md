@@ -1,5 +1,5 @@
 # TrackingRecords
-Given, a table of transaction records with a starting tracking number, ending tracking number, status code and transfer code, <br \>
+Given, a table of transaction records with a starting tracking number, ending tracking number, status code and transfer code, 
 the table must always accurately represent the most recent data (status code and transfer code) for that tracking number. 
 
 <h4>Input</h4>
